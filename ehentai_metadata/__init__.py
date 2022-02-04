@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # vim:fileencoding=UTF-8:ts=4:sw=4:sta:et:sts=4:ai
 from __future__ import (unicode_literals, division, absolute_import,
                         print_function)
@@ -13,7 +13,7 @@ from calibre import as_unicode
 
 import re
 import json
-from urllib import urlencode
+from urllib.parse import urlencode
 
 def to_metadata(log,gmetadata,ExHentai_Status): # {{{
     title = gmetadata['title']
@@ -154,7 +154,7 @@ class Ehentai(Source):
             if author_token:
                 q = q + (' ' if q != '' else '') + build_term('author', author_token)
         q = q.strip()
-        if isinstance(q, unicode):
+        if isinstance(q, str):
             q = q.encode('utf-8')
         if not q:
             return None
@@ -171,7 +171,7 @@ class Ehentai(Source):
     def get_gallery_info(self,log,raw): # {{{
         
         pattern = re.compile(r'https:\/\/(?:e-hentai\.org|exhentai\.org)\/g\/(?P<gallery_id>\d+)/(?P<gallery_token>\w+)/')
-        results = re.findall(pattern,raw)
+        results = re.findall(pattern,raw.decode())
         if not results:
             log.exception('Failed to get gallery_id and gallery_token!')
             return None

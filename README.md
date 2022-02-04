@@ -27,3 +27,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+**Note**
+
+I have transformed the code to python3 using py2to3, and fix some small issues.
